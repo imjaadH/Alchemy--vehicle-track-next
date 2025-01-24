@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  auth_provider String?  @default("Google")
+  oauth_id      String?
+  first_name    String   @db.VarChar(100)
+  last_name     String   @db.VarChar(100)
+  email_address String
+  job_location  String
+  created       DateTime @default(now()) @db.Timestamptz(6)
+  updated       DateTime @updatedAt @db.Timestamptz(6)
+
+  @@map("users")
+}
+
+model Vehicle {
+  id      String   @id @default(uuid())
+  make    String
+  model   String   @unique
+  vin     String
+  created DateTime @default(now()) @db.Timestamptz(6)
+  updated DateTime @updatedAt @db.Timestamptz(6)
+  Task    Task[]
+
+  @@map("vehicles")
+}
+
+model Driver {
+  id        String     @id @default(uuid())
+  full_name String     @default("Driver")
+  status    UserStatus @default(AVAILABLE)
+  created   DateTime   @default(now()) @db.Timestamptz(6)
+  updated   DateTime   @updatedAt @db.Timestamptz(6)
+  Task      Task[]
+
+  @@map("drivers")
+}
+
+model Task {
+  id            String     @id @default(uuid())
+  driver_id     String
+  driver        Driver?    @relation(fields: [driver_id], references: [id])
+  vehicle_id    String
+  vehicle       Vehicle?   @relation(fields: [vehicle_id], references: [id])
+  status        TaskStatus @default(PENDING)
+  location_name String
+  latitude      Float      @default(0.0)
+  longitude     Float      @default(0.0)
+  created       DateTime   @default(now()) @db.Timestamptz(6)
+  updated       DateTime   @updatedAt @db.Timestamptz(6)
+
+  @@map("tasks")
+}
+
+enum UserStatus {
+  AVAILABLE
+  ATWORK
+  DISABLED
+}
+
+enum TaskStatus {
+  STARTED
+  PENDING
+  COMPLETED
+}
