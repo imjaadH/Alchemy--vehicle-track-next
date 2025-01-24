@@ -62,7 +62,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
       <div
         className={cn(
           `flex h-screen w-16 flex-col justify-between border-e bg-white`,
-          (pathname === '/auth/signin' || pathname === '/') && 'hidden',
+          (pathname === '/user/signin' || pathname === '/') && 'hidden',
         )}
       >
         <div>
