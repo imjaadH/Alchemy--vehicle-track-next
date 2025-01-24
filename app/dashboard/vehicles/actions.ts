@@ -13,7 +13,6 @@ type Response = {
 }
 
 const createVehicle = async (vehicle: any): Promise<Response> => {
-  await wait(3000)
   try {
     const validation = vehicleSchema.safeParse(vehicle)
 
@@ -83,12 +82,6 @@ const getVehicles = async () => {
     },
   })
   return records
-}
-
-function wait(duration: number) {
-  return new Promise(res => {
-    setTimeout(res, duration)
-  })
 }
 
 export {
