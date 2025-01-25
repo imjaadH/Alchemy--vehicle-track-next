@@ -1,8 +1,4 @@
-import { BackgroundLines } from '@/components/ui/background-lines'
-import { Button } from '@/components/ui/button'
-import { motion } from 'framer-motion'
-import { ArrowRightCircle, ArrowUpRight } from 'lucide-react'
-import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 
 const HomePage = () => {
   return (

@@ -19,5 +19,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/profile/:path*', '/api/:path*', '/'], // Apply middleware only to /dashboard routes
+  matcher: ['/dashboard/:path*', '/profile/:path*', '/api/trips/:path*', '/'], // Apply middleware only to /dashboard routes
 }
