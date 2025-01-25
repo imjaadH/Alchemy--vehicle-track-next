@@ -8,8 +8,39 @@ root,
 body {
 height: 100%;
  color-scheme:inherit;
+ --sb-track-color: #f1f1f1;
+  --sb-thumb-color: #d8d8d8;
+  --sb-size: 7px;
 }
 
+
+:root {
+  --sb-track-color: #f1f1f1;
+  --sb-thumb-color: #d8d8d8;
+  --sb-size: 7px;
+}
+
+*::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 4px;
+  
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
 
 @layer base {
   :root {

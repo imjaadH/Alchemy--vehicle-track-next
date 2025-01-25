@@ -10,8 +10,8 @@ const TripsPage = async () => {
 
   return (
     <div className='p-5'>
-      <h3 className='text-2xl font-semibold'>Your Vehicles</h3>
-      <p className='text-gray-500'>manage your vehicles here</p>
+      <h3 className='text-2xl font-semibold'>Your Trips</h3>
+      <p className='text-gray-500'>manage your trips here</p>
       <section className='mt-6 md:max-w-6xl mx-auto'>
         <div className='flex justify-end'>
           <CreateTrip />

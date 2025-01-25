@@ -11,8 +11,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { z } from 'zod'
-import { useToast } from '@/hooks/use-toast'
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Button } from '../ui/button'
 import { useMutation } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
@@ -37,7 +36,7 @@ interface FormProps {
   defaultData?: Types.Task
 }
 
-const TripForm: React.FC<FormProps> = ({
+const UpdateTripForm: React.FC<FormProps> = ({
   onFormSubmitted,
   defaultData,
   drivers,
@@ -50,20 +49,13 @@ const TripForm: React.FC<FormProps> = ({
 
   const mutation = useMutation({
     mutationFn: async (values: FormSchema & { id?: string }) =>
-      defaultData
-        ? await updateTrip(values, values.id!!)
-        : await createTrip(values),
+      await updateTrip(values, values.id!!),
   })
-
-  const { toast } = useToast()
 
   async function onSubmit(values: FormSchema) {
     if (defaultData) {
       //update trip
       mutation.mutate({ ...values, id: defaultData.id })
-    } else {
-      //create trip
-      mutation.mutate(values)
     }
   }
 
@@ -73,21 +65,6 @@ const TripForm: React.FC<FormProps> = ({
       : '✔ Trip added successfully'
 
     if (mutation.data) {
-      const response = mutation.data
-      if (response.type === 'success') {
-        toast({
-          title: toastMessage,
-        })
-        /* hide form dialog */
-        if (onFormSubmitted) {
-          onFormSubmitted()
-        }
-      } else {
-        toast({
-          variant: 'destructive',
-          title: 'Something went wrong',
-        })
-      }
     }
   }, [mutation.status])
 
@@ -182,6 +159,33 @@ const TripForm: React.FC<FormProps> = ({
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name='status'
+            render={({ field }) => (
+              <FormItem className='grid grid-cols-4 items-center gap-4'>
+                <FormLabel>Status</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl className='col-span-3'>
+                    <SelectTrigger>
+                      <SelectValue placeholder='Select status' />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {Object.keys(Types.TaskStatus).map(item => (
+                      <SelectItem key={item} value={item.toString()}>
+                        {item.toString()}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage className='col-span-4' />
+              </FormItem>
+            )}
+          />
         </div>
 
         <Button type='submit' disabled={loading}>
@@ -193,4 +197,4 @@ const TripForm: React.FC<FormProps> = ({
   )
 }
 
-export default TripForm
+export default UpdateTripForm

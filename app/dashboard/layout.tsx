@@ -9,7 +9,9 @@ export default async function DashboardLayout({
   return (
     <Sidebar>
       <Navbar />
-      <div className='max-w-screen-2xl mx-auto overflow-x-auto'>{children}</div>
+      <div className='max-w-screen-2xl mx-auto overflow-x-auto h-[90%] '>
+        {children}
+      </div>
     </Sidebar>
   )
 }

@@ -3,6 +3,7 @@
 import { prisma } from '@/lib/prisma'
 import { taskSchema } from '@/schemas'
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 type Response = {
   message: string
@@ -58,4 +59,30 @@ const removeTrip = async (tripId: string) => {
   })
   revalidatePath('/dashboard/trips')
 }
-export { createTrip, getAllTrips, removeTrip }
+
+const getTripById = async (tripId: string) => {
+  const trip = await prisma.task.findUnique({
+    where: {
+      id: `${tripId}`,
+    },
+  })
+
+  return trip
+}
+
+const updateTrip = async (data: any, id: string) => {
+  const validation = taskSchema.safeParse(data)
+  if (validation.success) {
+    await prisma.task.update({
+      where: {
+        id: `${id}`,
+      },
+      data: data,
+    })
+    revalidatePath('/dashboard/trips')
+    redirect('/dashboard/trips')
+  }
+
+  throw new Error('Error occured')
+}
+export { createTrip, getAllTrips, removeTrip, getTripById, updateTrip }

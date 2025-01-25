@@ -9,11 +9,13 @@ import {
   CommandList,
 } from '@/components/ui/command'
 
-import { useState } from 'react'
-import { Loader2, MapPin, Search } from 'lucide-react'
-import { useQuery } from '@tanstack/react-query'
+import { useMemo, useState } from 'react'
+import { Loader2, MapPin } from 'lucide-react'
+import { QueryClient, useQuery } from '@tanstack/react-query'
+import { useDebounce } from '@/hooks/use-debounce'
 
 const getSearchResults = async (search: string) => {
+  if (!search.length) return
   const response = await fetch(`/api/trips/places?query=${search}`)
   return response.json()
 }
@@ -27,16 +29,27 @@ type Point = {
 }
 interface InputProps {
   onAddress: (value: Point) => void
+  defaultLocation?: Point
 }
+
 export const AddressSearchInput: React.FC<InputProps> = props => {
   const [searchText, setSearchText] = useState('')
-  const [selectedPoint, setSelectedPoint] = useState<Point | null>(null)
+  const [selectedPoint, setSelectedPoint] = useState<Point | null>(
+    props.defaultLocation ?? null,
+  )
+
+  const debouncedText = useDebounce(searchText)
 
   const { data: results, isPending } = useQuery({
-    queryKey: ['address-search', searchText],
-    queryFn: () => getSearchResults(searchText),
+    queryKey: ['address-search', debouncedText],
+    queryFn: () => getSearchResults(debouncedText),
     refetchOnWindowFocus: false,
   })
+
+  const suggestions = useMemo(() => {
+    if (searchText === '') return []
+    return results?.data
+  }, [searchText, results])
 
   return (
     <div>
@@ -50,15 +63,15 @@ export const AddressSearchInput: React.FC<InputProps> = props => {
         <CommandList onSelect={e => console.log(e)}>
           {isPending && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
 
-          {results?.data && (
+          {suggestions && (
             <CommandGroup>
-              {results.data?.map((item: any, index: number) => (
+              {suggestions.map((item: any, index: number) => (
                 <CommandItem
                   key={index}
                   onSelect={item => {
-                    setSelectedPoint(results?.data[index])
+                    setSelectedPoint(suggestions[index])
                     setSearchText('')
-                    props.onAddress(results?.data[index])
+                    props.onAddress(suggestions[index])
                   }}
                 >
                   {item.name}

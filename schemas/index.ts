@@ -13,6 +13,7 @@ export const taskSchema = z.object({
   location_name: z.string(),
   latitude: z.number({ message: 'location is required' }).gt(-90).lt(90),
   longitude: z.number({ message: 'location is required' }).gt(-180).lt(180),
+  status: z.nativeEnum(Types.TaskStatus).optional(),
 })
 
 export const UserCreate = z.object({

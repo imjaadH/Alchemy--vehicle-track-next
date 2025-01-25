@@ -1,31 +1,44 @@
-import { Types } from '@/types'
+'use client'
 import TripCard from './trip-card-item'
+import { Input } from '../ui/input'
+import { useState } from 'react'
 import { TripType } from '@/app/dashboard/trips/columns'
 
 interface Props {
   data: any[]
 }
+
 const TripsList = ({ data }: Props) => {
+  const [searchText, setSearchText] = useState<string>('')
+
   return (
-    <div className='bg-white p-2 border-e h-full '>
+    <div className='bg-white p-2 border-e h-auto'>
       <div className=' my-2 px-2 mt-4'>
         <label className='sr-only'> Search </label>
 
-        <input
-          type='text'
-          id='Search'
-          placeholder='Search for...'
-          className='w-full rounded-md px-2 border-gray-200 border  py-2.5 pe-10 shadow-sm sm:text-sm'
-        />
+        <div className='flex items-center'>
+          <Input
+            placeholder='search vehicle or driver...'
+            onChange={e => setSearchText(e.target.value.trim())}
+            className='focus:border-transparent focus:outline-0 focus:ring-0 focus:border-0'
+          />
+        </div>
       </div>
       <div className='text-sm text-gray-500 font-semibold'>
         Trips ({data?.length ?? '...'})
       </div>
 
       <div className='flex flex-col mt-1'>
-        {data?.map((item, index) => (
-          <TripCard key={index} data={item} />
-        ))}
+        {data
+          ?.filter(
+            (item: TripType) =>
+              (item?.driver.full_name).toLowerCase().includes(searchText) ||
+              (item?.vehicle.make).toLowerCase().includes(searchText) ||
+              (item?.vehicle.model).toLowerCase().includes(searchText),
+          )
+          .map((item, index) => (
+            <TripCard key={index} data={item} />
+          ))}
       </div>
     </div>
   )

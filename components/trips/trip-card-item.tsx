@@ -1,12 +1,20 @@
 'use client'
 import { TripType } from '@/app/dashboard/trips/columns'
 import { cn } from '@/lib/utils'
-import { ArrowRight, MapIcon, MoveUpRight } from 'lucide-react'
+import { format } from 'date-fns'
+import { Activity, CircleCheck, Clock, MapPin } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 interface Props {
   data: TripType
 }
+
+const statusIcon = {
+  STARTED: <Activity size={15} className='text-orange-600' />,
+  PENDING: <Clock size={15} className='text-gray-500' />,
+  COMPLETED: <CircleCheck size={15} className='text-lime-600' />,
+}
+
 const createQueryString = (name: string, value: string) => {
   const params = new URLSearchParams()
   params.set(name, value)
@@ -37,13 +45,18 @@ const TripCard = ({ data }: Props) => {
         isActive && 'bg-gray-100 rounded-lg',
       )}
     >
-      <p
-        className={cn(
-          `font-semibold text-black text-sm ${isActive && 'text-blue-900'}`,
-        )}
-      >
-        {data?.location_name}
-      </p>
+      <div className='flex items-center gap-1'>
+        <MapPin size={15} className={cn(`${isActive && 'text-blue-950'}`)} />
+        <p
+          className={cn(
+            `font-semibold text-gray-800 text-sm ${
+              isActive && 'text-blue-900'
+            }`,
+          )}
+        >
+          {data?.location_name}
+        </p>
+      </div>
 
       <div>
         <p className='font-regular text-gray-500 text-sm  '>
@@ -54,8 +67,15 @@ const TripCard = ({ data }: Props) => {
           <p className='font-regular text-gray-500 text-sm  '>
             {data?.vehicle.make} {data?.vehicle.model}
           </p>
+        </div>
 
-          <ArrowRight size={15} className={cn(`text-gray-500`)} />
+        <div className='mt-3 flex items-center gap-2'>
+          <div title={data.status.toLowerCase()}>
+            {statusIcon[data?.status]}
+          </div>
+          <p className='font-regular text-gray-500 text-xs'>
+            {format(data?.created, 'LLLL d, yyyy')}
+          </p>
         </div>
       </div>
     </div>
