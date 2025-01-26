@@ -8,15 +8,13 @@ root,
 body {
 height: 100%;
  color-scheme:inherit;
- --sb-track-color: #f1f1f1;
-  --sb-thumb-color: #d8d8d8;
-  --sb-size: 7px;
+ 
 }
 
 
 :root {
-  --sb-track-color: #f1f1f1;
-  --sb-thumb-color: #d8d8d8;
+  --sb-track-color: #aaaaaa;
+  --sb-thumb-color: #6d6d6d;
   --sb-size: 7px;
 }
 
@@ -71,6 +69,7 @@ height: 100%;
 --radius: 0.5rem;
 }
   .dark {
+ 
 --background: 240 10% 3.9%;
 --foreground: 0 0% 98%;
 --card: 240 10% 3.9%;

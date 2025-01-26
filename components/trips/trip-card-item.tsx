@@ -41,16 +41,19 @@ const TripCard = ({ data }: Props) => {
         )
       }
       className={cn(
-        `flex flex-col gap-1 border-b px-2 py-4 hover:bg-slate-100 hover:rounded-lg cursor-pointer`,
-        isActive && 'bg-gray-100 rounded-lg',
+        `flex flex-col gap-1 border-b  px-2 py-4 hover:bg-slate-100 hover:rounded-lg cursor-pointer  dark:hover:bg-neutral-800 `,
+        isActive && 'bg-gray-100 rounded-lg dark:bg-neutral-700',
       )}
     >
       <div className='flex items-center gap-1'>
-        <MapPin size={15} className={cn(`${isActive && 'text-blue-950'}`)} />
+        <MapPin
+          size={15}
+          className={cn(`${isActive && 'text-blue-950 dark:text-blue-600'}`)}
+        />
         <p
           className={cn(
-            `font-semibold text-gray-800 text-sm ${
-              isActive && 'text-blue-900'
+            `font-semibold text-gray-800 text-sm dark:text-white ${
+              isActive && 'text-blue-900 dark:text-blue-600'
             }`,
           )}
         >
@@ -59,12 +62,12 @@ const TripCard = ({ data }: Props) => {
       </div>
 
       <div>
-        <p className='font-regular text-gray-500 text-sm  '>
+        <p className='font-regular text-gray-500 text-sm dark:text-gray-300'>
           {data?.driver.full_name}
         </p>
 
         <div className='flex gap-2 items-end'>
-          <p className='font-regular text-gray-500 text-sm  '>
+          <p className='font-regular text-gray-500 text-sm dark:text-gray-300 '>
             {data?.vehicle.make} {data?.vehicle.model}
           </p>
         </div>
@@ -73,7 +76,7 @@ const TripCard = ({ data }: Props) => {
           <div title={data.status.toLowerCase()}>
             {statusIcon[data?.status]}
           </div>
-          <p className='font-regular text-gray-500 text-xs'>
+          <p className='font-regular text-gray-500 text-xs dark:text-gray-300'>
             {format(data?.created, 'LLLL d, yyyy')}
           </p>
         </div>

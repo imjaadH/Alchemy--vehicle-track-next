@@ -12,7 +12,7 @@ const TripsList = ({ data }: Props) => {
   const [searchText, setSearchText] = useState<string>('')
 
   return (
-    <div className='bg-white p-2 border-e h-full'>
+    <div className=' p-2 border-e h-full'>
       <div className=' my-2 px-2 mt-4'>
         <label className='sr-only'> Search </label>
 

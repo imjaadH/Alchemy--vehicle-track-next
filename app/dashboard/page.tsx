@@ -11,7 +11,7 @@ export default async function Home() {
     loading: () => <Loader2 className='mr-2 h-4 w-4 animate-spin' />,
   })
   return (
-    <div className='bg-neutral-50 h-full'>
+    <div className=' h-full'>
       <div className='grid grid-rows-3 md:grid-cols-4  md:gap-4 gap-2 h-full'>
         <div className='md:col-span-1 row-span-2 md:row-span-3 overflow-auto h-full'>
           <TripsList data={tripsData ?? []} />

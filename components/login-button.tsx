@@ -20,7 +20,7 @@ const LoginButton = () => {
               placeholder='empty'
             />
           </div>
-          <p className='text-slate-900 text-xs sm:text-base hidden sm:block'>
+          <p className='text-slate-900 text-xs sm:text-base hidden sm:block dark:text-white'>
             {session.user?.name}
           </p>
         </div>

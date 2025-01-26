@@ -3,6 +3,7 @@
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import LoginButton from '../login-button'
+import { ThemeButton } from './theme-button'
 
 interface NavbarProps {
   children?: React.ReactNode
@@ -20,7 +21,10 @@ const Navbar: React.FC<NavbarProps> = ({ children, className }) => {
       <div className='max-w-screen-2xl mx-auto flex items-center h-full justify-between py-2 px-2 md:px-8'>
         <p className='text-blue-800 font-bold font-mono '>Alchemy Tracks</p>
 
-        <LoginButton />
+        <div className='flex items-center gap-2'>
+          <ThemeButton />
+          <LoginButton />
+        </div>
       </div>
       {/* {children} */}
     </header>

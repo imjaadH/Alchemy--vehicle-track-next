@@ -54,14 +54,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
       {/* SIDEBAR ITEMS */}
       <div
         className={cn(
-          `flex h-screen w-12 md:w-16 flex-col justify-between border-e bg-white`,
+          `flex h-screen w-12 md:w-16 flex-col justify-between border-e `,
           (pathname === '/user/signin' || pathname === '/') && 'hidden',
         )}
       >
         <div>
-          <div className='border-t border-gray-100'>
+          <div className=' border-gray-100 dark:border-gray-600'>
             <div className='px-2'>
-              <ul className='space-y-1 border-t border-gray-100 pt-4 '>
+              <ul className='space-y-1  border-gray-100 pt-4 '>
                 {routes.map((item, index) => {
                   return (
                     <li key={index}>
@@ -77,7 +77,8 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                             size={18}
                             className={cn(
                               `text-gray-500`,
-                              item.active && 'text-blue-700',
+                              item.active &&
+                                'text-blue-700 dark:text-slate-800',
                             )}
                           />
                         }
@@ -94,7 +95,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           </div>
         </div>
 
-        <div className='sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2'>
+        <div className='sticky inset-x-0 bottom-0 border-t border-gray-100  p-2 dark:border-gray-700'>
           <SignOutButton />
         </div>
       </div>
