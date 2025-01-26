@@ -12,11 +12,11 @@ export default async function Home() {
   })
   return (
     <div className='bg-neutral-50 h-full'>
-      <div className='grid grid-cols-4 gap-4 h-full'>
-        <div className='col-span-1 overflow-auto'>
+      <div className='grid grid-rows-3 md:grid-cols-4  md:gap-4 gap-2 h-full'>
+        <div className='md:col-span-1 row-span-2 md:row-span-3 overflow-auto h-full'>
           <TripsList data={tripsData ?? []} />
         </div>
-        <div className='col-span-3 h-full p-4'>
+        <div className='md:col-span-3 row-span-1 md:row-span-3 h-full p-4'>
           <div className='inline-flex w-full h-full'>
             <MapView position={[51.505, -0.09]} />
           </div>

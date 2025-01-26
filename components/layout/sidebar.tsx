@@ -41,16 +41,16 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         href: '/dashboard/vehicles',
       },
       {
-        icon: CircleUser,
-        label: 'Profile',
-        active: pathname === '/dashboard/profile',
-        href: '/dashboard/profile',
-      },
-      {
         icon: Users,
         label: 'Drivers',
         active: pathname === '/dashboard/drivers',
         href: '/dashboard/drivers',
+      },
+      {
+        icon: CircleUser,
+        label: 'Profile',
+        active: pathname === '/dashboard/profile',
+        href: '/dashboard/profile',
       },
     ],
     [pathname],
@@ -61,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
       {/* SIDEBAR ITEMS */}
       <div
         className={cn(
-          `flex h-screen w-16 flex-col justify-between border-e bg-white`,
+          `flex h-screen w-12 md:w-16 flex-col justify-between border-e bg-white`,
           (pathname === '/user/signin' || pathname === '/') && 'hidden',
         )}
       >
@@ -75,7 +75,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                       <a
                         href={item.href}
                         className={cn(
-                          `group relative flex justify-center rounded px-2 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-700`,
+                          `group relative flex justify-center rounded md:px-2 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-700`,
                           item.active && 'bg-blue-50',
                         )}
                       >

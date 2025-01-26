@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ children, className }) => {
         className,
       )}
     >
-      <div className='max-w-screen-2xl mx-auto flex items-center h-full justify-between py-2 px-6 md:px-8'>
+      <div className='max-w-screen-2xl mx-auto flex items-center h-full justify-between py-2 px-2 md:px-8'>
         <p className='text-blue-800 font-bold font-mono '>Alchemy Tracks</p>
 
         <LoginButton />
