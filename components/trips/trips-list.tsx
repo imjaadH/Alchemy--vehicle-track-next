@@ -19,7 +19,7 @@ const TripsList = ({ data }: Props) => {
         <div className='flex items-center'>
           <Input
             placeholder='search vehicle or driver...'
-            onChange={e => setSearchText(e.target.value.trim())}
+            onChange={e => setSearchText(e.target.value.trim().toLowerCase())}
             className='focus:border-transparent focus:outline-0 focus:ring-0 focus:border-0'
           />
         </div>

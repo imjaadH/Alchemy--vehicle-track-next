@@ -16,7 +16,7 @@ export default async function Home() {
         <div className='md:col-span-1 row-span-2 md:row-span-3 overflow-auto h-full'>
           <TripsList data={tripsData ?? []} />
         </div>
-        <div className='md:col-span-3 row-span-1 md:row-span-3 h-full p-4'>
+        <div className='md:col-span-3 row-span-1 md:row-span-3 h-full p-4 z-0'>
           <div className='inline-flex w-full h-full'>
             <MapView position={[51.505, -0.09]} />
           </div>

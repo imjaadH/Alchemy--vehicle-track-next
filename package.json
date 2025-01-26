@@ -9,11 +9,11 @@
     "lint": "next lint",
     "vercel-build": "prisma generate && prisma migrate deploy && next build",
     "postinstall": "prisma generate"
-
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@prisma/client": "6.1.0",
+    "@radix-ui/react-alert-dialog": "^1.1.5",
     "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-dropdown-menu": "^2.1.4",
     "@radix-ui/react-label": "^2.1.1",

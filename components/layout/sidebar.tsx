@@ -2,17 +2,10 @@
 
 import { usePathname } from 'next/navigation'
 import { useMemo } from 'react'
-import {
-  HiOutlineHome,
-  HiOutlineLogout,
-  HiOutlineMap,
-  HiOutlineTruck,
-  HiOutlineUser,
-} from 'react-icons/hi'
-import { BiSearch } from 'react-icons/bi'
 import { cn } from '@/lib/utils'
 import { signOut } from 'next-auth/react'
 import { Car, CircleUser, HomeIcon, Map, Users } from 'lucide-react'
+import { SignOutButton } from '../signout-button'
 interface SidebarProps {
   children: React.ReactNode
 }
@@ -102,18 +95,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         </div>
 
         <div className='sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2'>
-          <form action={() => signOut()}>
-            <button
-              type='submit'
-              className='group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700'
-            >
-              <HiOutlineLogout size={22} className='text-red-800' />
-
-              <span className='invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible'>
-                Logout
-              </span>
-            </button>
-          </form>
+          <SignOutButton />
         </div>
       </div>
       {/* MAIN COMPONENT */}
