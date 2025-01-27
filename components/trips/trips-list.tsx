@@ -12,7 +12,7 @@ const TripsList = ({ data }: Props) => {
   const [searchText, setSearchText] = useState<string>('')
 
   return (
-    <div className=' p-2 border-e h-full'>
+    <div className=' p-2 border-e h-full flex flex-col overflow-hidden'>
       <div className=' my-2 px-2 mt-4'>
         <label className='sr-only'> Search </label>
 
@@ -28,7 +28,7 @@ const TripsList = ({ data }: Props) => {
         Trips ({data?.length ?? '...'})
       </div>
 
-      <div className='flex flex-col mt-1'>
+      <div className='flex flex-col mt-1 h-full overflow-y-auto'>
         {data
           ?.filter(
             (item: TripType) =>

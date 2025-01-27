@@ -8,8 +8,7 @@ export default async function DashboardLayout({
 }>) {
   return (
     <Sidebar>
-      <Navbar />
-      <div className='max-w-screen-2xl mx-auto overflow-x-auto h-[90%] '>
+      <div className='max-w-screen-2xl mx-auto overflow-x-auto h-[100%] '>
         {children}
       </div>
     </Sidebar>

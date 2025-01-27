@@ -18,11 +18,17 @@ export function ThemeButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon'>
-          <Sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-          <Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+        <button className='h-7 w-7 p-1 rounded border flex items-center justify-center  '>
+          <Sun
+            size={15}
+            className='  transition-all dark:-rotate-90 dark:hidden'
+          />
+          <Moon
+            size={15}
+            className=' transition-all dark:rotate-0 hidden dark:block'
+          />
           <span className='sr-only'>Toggle theme</span>
-        </Button>
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
         <DropdownMenuItem onClick={() => setTheme('light')}>

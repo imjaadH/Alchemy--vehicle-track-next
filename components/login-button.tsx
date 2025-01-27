@@ -9,8 +9,8 @@ const LoginButton = () => {
 
   if (session) {
     return (
-      <Link href={'/dashboard/profile'} title='Profile'>
-        <div className='flex gap-2 md:items-center justify-end'>
+      <Link href={'/dashboard/profile'} title={session.user?.name ?? 'Profile'}>
+        <div className='flex gap-2 md:items-center justify-end flex-col'>
           <div className='rounded h-7 w-7 flex bg-gray-300 relative'>
             <Image
               alt='profileImage'
@@ -20,9 +20,6 @@ const LoginButton = () => {
               placeholder='empty'
             />
           </div>
-          <p className='text-slate-900 text-xs sm:text-base hidden sm:block dark:text-white'>
-            {session.user?.name}
-          </p>
         </div>
       </Link>
     )

@@ -48,12 +48,12 @@ const TripCard = ({ data }: Props) => {
       <div className='flex items-center gap-1'>
         <MapPin
           size={15}
-          className={cn(`${isActive && 'text-blue-950 dark:text-blue-600'}`)}
+          className={cn(`${isActive && 'text-blue-950 dark:text-white'}`)}
         />
         <p
           className={cn(
             `font-semibold text-gray-800 text-sm dark:text-white ${
-              isActive && 'text-blue-900 dark:text-blue-600'
+              isActive && 'text-blue-900 dark:text-white'
             }`,
           )}
         >

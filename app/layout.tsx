@@ -21,7 +21,7 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession()
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body
         className={twMerge(
           `antialiased bg-gray-50 dark:bg-neutral-900`,

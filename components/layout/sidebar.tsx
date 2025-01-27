@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils'
 import { signOut } from 'next-auth/react'
 import { Car, CircleUser, HomeIcon, Map, Users } from 'lucide-react'
 import { SignOutButton } from '../signout-button'
+import LoginButton from '../login-button'
+import { ThemeButton } from './theme-button'
 interface SidebarProps {
   children: React.ReactNode
 }
@@ -95,7 +97,9 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           </div>
         </div>
 
-        <div className='sticky inset-x-0 bottom-0 border-t border-gray-100  p-2 dark:border-gray-700'>
+        <div className='flex flex-col items-center gap-4 border-gray-100  p-2 inset-x-0 bottom-0 border-t dark:border-gray-700'>
+          <ThemeButton />
+          <LoginButton />
           <SignOutButton />
         </div>
       </div>
