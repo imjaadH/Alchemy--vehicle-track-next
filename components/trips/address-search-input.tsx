@@ -60,7 +60,7 @@ export const AddressSearchInput: React.FC<InputProps> = props => {
           value={searchText}
         />
 
-        <CommandList onSelect={e => console.log(e)}>
+        <CommandList>
           {isPending && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
 
           {suggestions && (

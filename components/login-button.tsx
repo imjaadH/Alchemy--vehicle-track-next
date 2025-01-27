@@ -11,7 +11,7 @@ const LoginButton = () => {
     return (
       <Link href={'/dashboard/profile'} title={session.user?.name ?? 'Profile'}>
         <div className='flex gap-2 md:items-center justify-end flex-col'>
-          <div className='rounded h-7 w-7 flex bg-gray-300 relative'>
+          <div className='rounded h-7 w-7 flex relative'>
             <Image
               alt='profileImage'
               fill

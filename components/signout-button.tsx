@@ -31,7 +31,14 @@ export const SignOutButton: React.FC = () => {
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction asChild>
-              <form onSubmit={() => signOut()}>
+              <form
+                action={() =>
+                  signOut({
+                    callbackUrl: '/user/signin',
+                    redirect: true,
+                  })
+                }
+              >
                 <button type='submit'>Sign out</button>
               </form>
             </AlertDialogAction>

@@ -16,7 +16,20 @@ height: 100%;
   --sb-track-color: #aaaaaa;
   --sb-thumb-color: #6d6d6d;
   --sb-size: 7px;
+  --map-tiles-filter: invert(0%) hue-rotate(45deg) brightness(100%) contrast(95%);
+  --map-tiles-filter-dark: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+
+
 }
+.map-tiles {
+  @apply filter;
+  filter: var(--map-tiles-filter);
+}
+
+.dark .map-tiles {
+  filter: var( --map-tiles-filter-dark);
+}
+ 
 
 *::-webkit-scrollbar {
   width: var(--sb-size)
